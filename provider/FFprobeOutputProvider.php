@@ -18,7 +18,10 @@ class FFprobeOutputProvider extends AbstractOutputProvider {
      * @param string $ffprobeBinary path to ffprobe executable
      * @param boolean $persistent persistent functionality on/off
      */    
-    public function __construct($ffprobeBinary = 'ffprobe', $persistent = false) {
+    public function __construct($ffprobeBinary = null, $persistent = false) {
+		if(is_null($ffprobeBinary)){
+			$ffprobeBinary = Kohana::$config->load('ffmpeg.binary_ffprobe');
+				}
         parent::__construct($ffprobeBinary, $persistent);
     }
     

@@ -18,7 +18,10 @@ class FFmpegOutputProvider extends AbstractOutputProvider {
      * @param string $ffmpegBinary path to ffmpeg executable
      * @param boolean $persistent persistent functionality on/off
      */
-    public function __construct($ffmpegBinary = 'ffmpeg', $persistent = false) {
+    public function __construct($ffmpegBinary = null, $persistent = false) {
+		if(is_null($ffmpegBinary)){
+			$ffmpegBinary = Kohana::$config->load('ffmpeg.binary');
+		}
         parent::__construct($ffmpegBinary, $persistent);
     }
 	
